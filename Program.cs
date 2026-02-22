@@ -195,7 +195,7 @@ public class Program
 
     private static void ReturnerBok(Bibliotek bibliotek)
     {
-        // Find loan by user ID and book title
+     // Find loan by user ID and book title
         Console.Write("User ID: ");
         int userId = int.Parse(Console.ReadLine());
         
@@ -230,7 +230,7 @@ public class Program
         Book newBook = new Book(tittel, forfatter, isbn, utgitt, copies);
         bibliotek.LeggTilBook(newBook);
     }
-    // New method to display loan history
+ // New method to display loan history
     private static void VisLånhistorikk(Bibliotek bibliotek, List<User> users)
 {
     Console.Write("User ID: ");
@@ -242,8 +242,7 @@ public class Program
         Console.WriteLine("User ikke funnet.");
         return;
     }
-    
-    // Get all loans for this user
+ // Get all loans for this user
     var userLoans = bibliotek.Loans.Where(l => l.Låntaker == user).ToList();
     
     if (userLoans.Count == 0)
@@ -253,8 +252,7 @@ public class Program
     }
     
     Console.WriteLine($"\nLånehistorikk for {user.Navn}");
-    
-    // Show active loans
+// Show active loans
     var activeLoans = userLoans.Where(l => l.Status == "Active").ToList();
     if (activeLoans.Count > 0)
     {

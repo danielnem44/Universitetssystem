@@ -13,13 +13,14 @@ public class Kurs
 
     public Kurs(string kode, string navn, int studiepoeng, int maxCapacity)
     {
+        //properties 
         Kode = kode;
         Navn = navn;
         Studiepoeng = studiepoeng;
         MaxCapacity = maxCapacity;
         PåmeldtStudenter = new List<Student>();
     }
-
+    // method to add a student to the course
     public void PåmeldtStudent(Student student)
     {
         if (PåmeldtStudenter.Contains(student))
@@ -38,7 +39,7 @@ public class Kurs
             Console.WriteLine($"Kan ikke melde {student.Navn} på {Navn}. Makskapasitet nådd.");
         }
     }
-
+// method to remove a student from the course
     public void IkkePåmeldtStudent(Student student)
     {
         if (PåmeldtStudenter.Contains(student))
@@ -64,11 +65,10 @@ public class Kurs
             Console.WriteLine("\t" + student.Navn);
         }
     }
-
+// search for a course with code or name
     public static Kurs? SøkeEtterKurs(List<Kurs> kurser, string kode, string navn)
     {
         return kurser.FirstOrDefault(c => c.Kode == kode || c.Navn.Contains(navn));
     }
 }
 
-    
