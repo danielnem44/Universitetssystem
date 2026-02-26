@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
+// Class for course management, including course code, name, credits, capacity, and enrolled students
 public class Kurs
 {
+    // properties for kurs system
     public string Kode { get; set; }
     public string Navn { get; set; }
     public int Studiepoeng { get; set; }
     public int MaxCapacity { get; set; }
     public List<Student> PåmeldtStudenter { get; set; }
-
+// constructor for kurs
     public Kurs(string kode, string navn, int studiepoeng, int maxCapacity)
     {
         //properties 
