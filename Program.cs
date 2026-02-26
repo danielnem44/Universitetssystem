@@ -26,7 +26,7 @@ public class Program
 
          Console.WriteLine("Test data loaded\n");
         
-        
+        // loop for user interaction 
 
 
         bool running = true;
@@ -44,7 +44,7 @@ public class Program
             Console.WriteLine("[9] Vis lånhistorikk");
             Console.WriteLine("[0] Avslutt");
             Console.Write("Velg: ");
-
+// Input and execute action
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -84,7 +84,7 @@ public class Program
                     break;
             }
         }
-    }
+// create a new course    }
 
     private static void OpprettKurs(List<Kurs> kurser)
     {
@@ -101,7 +101,7 @@ public class Program
         kurser.Add(newKurs);
         Console.WriteLine($"Kurs '{navn}' opprettet.");
     }
-
+// enroll student to a course
     private static void MeldStudentTilKurs(List<Kurs> kurser, List<User> users)
     {
         Console.Write("Student ID: ");
@@ -124,7 +124,7 @@ public class Program
 
         kurs.PåmeldtStudent(student);
     }
-
+// all course list and their participants
     private static void PrintKursOgDeltakere(List<Kurs> kurser)
     {
         if (kurser.Count == 0)
@@ -139,7 +139,7 @@ public class Program
             Console.WriteLine("\n");
         }
     }
-
+// search for a course
     private static void SøkPåKurs(List<Kurs> kurser)
     {
         Console.Write("Søk etter kurs (kode eller navn): ");
@@ -154,7 +154,7 @@ public class Program
             Console.WriteLine("Kurs ikke funnet.");
         }
     }
-
+// search a book
     private static void SøkPåBok(Bibliotek bibliotek)
     {
         Console.Write("Søk etter bok (tittel): ");
@@ -169,7 +169,7 @@ public class Program
             Console.WriteLine("Bok ikke funnet.");
         }
     }
-
+// borrow a book
     private static void LånBok(Bibliotek bibliotek, List<User> users)
     {
         Console.Write("User ID: ");
