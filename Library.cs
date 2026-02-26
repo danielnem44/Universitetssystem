@@ -6,9 +6,10 @@ using System.Security.Cryptography.X509Certificates;
 
 
 
-
+// class for bibliotek system, include, user management, loan management and book management
 public class Bibliotek
 {
+    // properties for bibliotel system
     public List<Book> Books { get; set; }
     public List<User> Users { get; set; }
     public List<Loan> Loans { get; set; }
