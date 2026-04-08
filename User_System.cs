@@ -14,12 +14,19 @@ public class User // super class for Brukere/ parent class
    public int ID { get; set; }
     public string Navn { get; set; }
     public string Epost { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public string Role { get; set; }
 
-    public User(int id, string navn, string epost) // constructor 
+
+    public User(int id, string navn, string epost, string username, string password, string role) // constructor 
     {
         ID = id;
         Navn = navn;
         Epost = epost;
+        Username= username;
+        Password = password;
+        Role = role;
     }
 
     public virtual void DisplayInfo() // virtual method to display user info
@@ -27,6 +34,10 @@ public class User // super class for Brukere/ parent class
         Console.WriteLine("ID:\t"+ ID);
         Console.WriteLine("Navn:\t"+ Navn);
         Console.WriteLine("Epost:\t"+ Epost);
+        Console.WriteLine("Username:\t"+ Username);
+        Console.WriteLine("Password:\t"+ Password);
+        Console.WriteLine("Role:\t"+ Role);
+
     }
 
 
@@ -35,8 +46,8 @@ public class User // super class for Brukere/ parent class
 public class Student: User // subclass for student child for  user (parent)
 {
     public List<string> Kurser { get; set; } 
-    public Student(int id, string navn, string epost, List<string> kurser) 
-        : base(id, navn, epost) // calling parent class which is user class
+    public Student(int id, string navn, string epost, string username, string password, string role, List<string> kurser) 
+        : base(id, navn, epost, username, password, role) // calling parent class which is user class
     {
         Kurser = kurser;
     }
@@ -57,8 +68,8 @@ public class ExchangeStudent: Student // exhange student child for (student clas
     public string Land { get; set; }
     public string Periode { get; set; }
 
-    public ExchangeStudent(int id, string navn, string epost,List<string> kurser,string hjemland, string land, string periode)
-        : base(id, navn, epost,kurser) // same here calling parent class/ user/student
+    public ExchangeStudent(int id, string navn, string epost,List<string> kurser,string hjemland, string land, string periode, string username, string password, string role)
+        : base(id, navn, epost, username, password, role, kurser) // same here calling parent class/ user/student
     {
         Hjemland = hjemland;
         Land = land;
@@ -79,8 +90,8 @@ public class Ansatt: User // ansatt child for user class/parent of ansatt
     public string Stilling { get; set; }
     public string Avdeling { get; set; }
 
-    public Ansatt(int id, string navn, string epost, string stilling, string avdeling)
-        :base(id, navn, epost)
+    public Ansatt(int id, string navn, string epost, string stilling, string avdeling, string username, string password, string role)
+        :base(id, navn, epost, username, password, role)
     {
         Stilling = stilling;
         Avdeling = avdeling;

@@ -6,10 +6,10 @@ using System.Security.Cryptography.X509Certificates;
 
 
 
-// class for bibliotek system, include, user management, loan management and book management
+// Class for library system, including book, user, loan, and waitlist
 public class Bibliotek
 {
-    // properties for bibliotel system
+    // properties for library system
     public List<Book> Books { get; set; }
     public List<User> Users { get; set; }
     public List<Loan> Loans { get; set; }
@@ -36,10 +36,14 @@ public class Bibliotek
         Console.WriteLine($"Brukeren '{user.Navn}' har blitt lagt til i biblioteket.");
     }
 // method to search for a book by title
-    public Book SøkBook(string tittel)
-    {
-       return Books.FirstOrDefault(b => b.Tittel.Contains(tittel));
-    }
+ public Book SøkBook(string tittel)
+{
+    if (string.IsNullOrEmpty(tittel))
+        return null;
+    
+    tittel = tittel.Trim().ToLower();  // Line 3: Clean it once
+    return Books.FirstOrDefault(b => b.Tittel.ToLower().Contains(tittel));  // Line 4: Just use it
+}
     
     public void LånBook(User user, Book book)
     {

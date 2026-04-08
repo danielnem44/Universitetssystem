@@ -2,26 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// Class for course management, including course code, name, credits, capacity, and enrolled students
 public class Kurs
 {
-    // properties for kurs system
     public string Kode { get; set; }
     public string Navn { get; set; }
     public int Studiepoeng { get; set; }
     public int MaxCapacity { get; set; }
     public List<Student> PåmeldtStudenter { get; set; }
-// constructor for kurs
+    public Dictionary<Student, double> Karakterer { get; set; } = new Dictionary<Student, double>();
+    public List<string> Pensum { get; set; } = new List<string>();
+
     public Kurs(string kode, string navn, int studiepoeng, int maxCapacity)
     {
-        //properties 
         Kode = kode;
         Navn = navn;
         Studiepoeng = studiepoeng;
         MaxCapacity = maxCapacity;
         PåmeldtStudenter = new List<Student>();
     }
-    // method to add a student to the course
+
     public void PåmeldtStudent(Student student)
     {
         if (PåmeldtStudenter.Contains(student))
@@ -29,7 +28,6 @@ public class Kurs
             Console.WriteLine($"{student.Navn} er allerede påmeldt i {Navn}.");
             return;
         }
-
         if (PåmeldtStudenter.Count < MaxCapacity)
         {
             PåmeldtStudenter.Add(student);
@@ -40,7 +38,7 @@ public class Kurs
             Console.WriteLine($"Kan ikke melde {student.Navn} på {Navn}. Makskapasitet nådd.");
         }
     }
-// method to remove a student from the course
+
     public void IkkePåmeldtStudent(Student student)
     {
         if (PåmeldtStudenter.Contains(student))
@@ -50,8 +48,30 @@ public class Kurs
         }
         else
         {
-            Console.WriteLine($"{student.Navn} har ikke påmeldt i {Navn}.");
+            Console.WriteLine($"{student.Navn} er ikke påmeldt {Navn}.");
         }
+    }
+
+    public void SettKarakter(Student student, double karakter)
+    {
+        if (!PåmeldtStudenter.Contains(student))
+        {
+            Console.WriteLine($"{student.Navn} er ikke påmeldt {Navn}.");
+            return;
+        }
+        Karakterer[student] = karakter;
+        Console.WriteLine($"Karakter {karakter} satt for {student.Navn} i {Navn}.");
+    }
+
+    public void LeggTilPensum(string bok)
+    {
+        if (Pensum.Contains(bok))
+        {
+            Console.WriteLine($"'{bok}' er allerede i pensum.");
+            return;
+        }
+        Pensum.Add(bok);
+        Console.WriteLine($"'{bok}' lagt til i pensum for {Navn}.");
     }
 
     public void DisplayKursInfo()
@@ -62,14 +82,17 @@ public class Kurs
         Console.WriteLine("Maks Kapasitet:\t" + MaxCapacity);
         Console.WriteLine("Påmeldte Studenter:\t" + PåmeldtStudenter.Count);
         foreach (Student student in PåmeldtStudenter)
-        {
             Console.WriteLine("\t" + student.Navn);
+        if (Pensum.Count > 0)
+        {
+            Console.WriteLine("Pensum:");
+            foreach (var bok in Pensum)
+                Console.WriteLine("\t- " + bok);
         }
     }
-// search for a course with code or name
+
     public static Kurs? SøkeEtterKurs(List<Kurs> kurser, string kode, string navn)
     {
         return kurser.FirstOrDefault(c => c.Kode == kode || c.Navn.Contains(navn));
     }
 }
-
