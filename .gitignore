@@ -4,3 +4,8 @@ obj/
 .vscode/
 *.csproj.user
 *.sln
+bin/
+obj/
+*.user
+*.suo
+.vs/
