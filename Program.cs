@@ -283,7 +283,7 @@ public class Program
         }
     }
 
-    // ─── TEST DATA ───────────────────────────────────────────────────────────
+    //TEST DATA 
 
     private static void LoadTestData()
     {
@@ -294,7 +294,7 @@ public class Program
         bibliotek.LeggTilBook(new Book("Design Patterns", "Gang of Four", "978-0201633610", 1994, 1));
     }
 
-    // ─── KURS HELPERS ────────────────────────────────────────────────────────
+
 
     private static void OpprettKurs(List<Kurs> kurser, Lærer lærer)
     {
